@@ -54,3 +54,4 @@ scripts/
 - **配置项即时生效**：`ReactLenis` 会在 options 的 JSON 签名变化时重建实例，调参台因此能立刻反映到整页。
 - **圆角只有一套**：容器 12px、控件 8px、头像与徽标全圆。
 - **主题**：`dark` 类挂在 `html` 上，首帧前由 `index.html` 内联脚本锁定，避免闪烁；用户选择持久化在 `localStorage`。
+- **SEO 与兜底件放 `public/`**：`robots.txt`、`sitemap.xml`（单页站只列根 URL，锚点不进 `<loc>`）、`404.html`（自包含内联设计令牌的品牌页，Tailwind 不扫描 `public/`，故不依赖构建产物）会随构建原样复制进 `dist/`，GitHub Pages 用 `404.html` 兜底所有错误路径并返回正确的 404 状态码。
