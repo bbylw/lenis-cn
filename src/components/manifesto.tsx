@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { ArrowUpRight } from '@phosphor-icons/react'
+import { OfficialBannerHud } from './official-banner-hud'
 
 export function Manifesto() {
   const ref = useRef<HTMLElement>(null)
@@ -36,10 +37,10 @@ export function Manifesto() {
         </picture>
       </motion.div>
 
-      <div className="absolute inset-0 -z-10 bg-linear-to-r from-background via-background/85 to-background/25" />
+      <div className="absolute inset-0 -z-10 bg-linear-to-r from-background via-background/90 to-background/40" />
 
-      <div className="mx-auto flex min-h-96 max-w-300 items-center px-5 py-20 md:min-h-120 lg:min-h-136">
-        <div className="max-w-[46ch]">
+      <div className="mx-auto flex min-h-96 max-w-300 flex-col justify-between gap-12 px-5 py-20 lg:flex-row lg:items-center md:min-h-120 lg:min-h-136">
+        <div className="max-w-[44ch]">
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand">宣言</p>
           <p className="mt-4 text-2xl leading-[1.35] font-medium tracking-tight text-balance sm:text-3xl">
             Lenis 取自拉丁语里的「平滑」。它不接管滚动，只是在原生滚动之上做一次插值。
@@ -54,7 +55,12 @@ export function Manifesto() {
             <ArrowUpRight size={14} />
           </a>
         </div>
+
+        <div className="w-full flex-1 lg:max-w-150">
+          <OfficialBannerHud />
+        </div>
       </div>
     </section>
   )
 }
+
