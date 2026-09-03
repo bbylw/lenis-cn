@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lenis 中文站 - 轻量、稳健、高性能的平滑滚动库</title>
+    <meta
+      name="description"
+      content="Lenis 是一个轻量、无依赖的平滑滚动库。基于原生滚动运行，支持任意轴向，可与 WebGL、GSAP ScrollTrigger 同步。中文文档、在线手感调参与完整 API 参考。"
+    />
+    <meta name="keywords" content="Lenis,平滑滚动,smooth scroll,前端动效,React平滑滚动,GSAP ScrollTrigger,WebGL滚动,中文文档" />
+    <link rel="canonical" href="https://lenis.ndjp.net/" />
+
+    <!-- Open Graph / 社交分享卡片 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lenis.ndjp.net/" />
+    <meta property="og:site_name" content="Lenis 中文站" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content="Lenis 中文站 - 轻量、稳健、高性能的平滑滚动库" />
+    <meta
+      property="og:description"
+      content="在原生滚动之上，加一层顺滑。几 KB、零依赖，支持任意轴向，可与 WebGL 和 GSAP 完美同步。在线手感调参与完整 API 参考。"
+    />
+    <meta property="og:image" content="/images/optimized/sync-motion-1440.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lenis 中文站 - 轻量、稳健、高性能的平滑滚动库" />
+    <meta
+      name="twitter:description"
+      content="在原生滚动之上，加一层顺滑。几 KB、零依赖，支持任意轴向，可与 WebGL 和 GSAP 完美同步。"
+    />
+    <meta name="twitter:image" content="/images/optimized/sync-motion-1440.jpg" />
+
+    <meta name="theme-color" content="#0b0b0d" />
+    <script>
+      // 在首帧前锁定主题，避免深浅色闪烁
+      (function () {
+        try {
+          var saved = localStorage.getItem('lenis-cn-theme')
+          var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+          document.documentElement.classList.toggle('dark', dark)
+        } catch (e) {
+          document.documentElement.classList.add('dark')
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

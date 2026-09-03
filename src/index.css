@@ -1,0 +1,224 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+@import 'lenis/dist/lenis.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Lenis 中文站设计令牌
+ * 中性色统一走冷灰（无暖灰混入），强调色只有一支：朱红。
+ * 纯黑 / 纯白均被禁用，亮暗两端都留出余量。
+ */
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.985 0.002 264);
+  --foreground: oklch(0.175 0.005 264);
+  --card: oklch(0.995 0.001 264);
+  --card-foreground: oklch(0.175 0.005 264);
+  --popover: oklch(0.995 0.001 264);
+  --popover-foreground: oklch(0.175 0.005 264);
+  --primary: oklch(0.225 0.006 264);
+  --primary-foreground: oklch(0.985 0.002 264);
+  --secondary: oklch(0.962 0.003 264);
+  --secondary-foreground: oklch(0.265 0.008 264);
+  --muted: oklch(0.962 0.003 264);
+  --muted-foreground: oklch(0.535 0.014 264);
+  --accent: oklch(0.945 0.005 264);
+  --accent-foreground: oklch(0.225 0.006 264);
+  --destructive: oklch(0.53 0.19 27);
+  --border: oklch(0.905 0.004 264);
+  --input: oklch(0.895 0.005 264);
+  --ring: oklch(0.52 0.185 27);
+
+  /* 品牌强调色：朱红。全局唯一，不做第二支。 */
+  --brand: oklch(0.52 0.185 27);
+  --brand-foreground: oklch(0.99 0.002 27);
+  --brand-soft: oklch(0.52 0.185 27 / 0.08);
+  --brand-line: oklch(0.52 0.185 27 / 0.22);
+
+  --surface-raised: oklch(0.972 0.003 264);
+  --surface-sunken: oklch(0.949 0.004 264);
+  --code-bg: oklch(0.965 0.004 264);
+}
+
+.dark {
+  --background: oklch(0.163 0.005 264);
+  --foreground: oklch(0.962 0.003 264);
+  --card: oklch(0.208 0.006 264);
+  --card-foreground: oklch(0.962 0.003 264);
+  --popover: oklch(0.208 0.006 264);
+  --popover-foreground: oklch(0.962 0.003 264);
+  --primary: oklch(0.93 0.004 264);
+  --primary-foreground: oklch(0.185 0.006 264);
+  --secondary: oklch(0.262 0.007 264);
+  --secondary-foreground: oklch(0.962 0.003 264);
+  --muted: oklch(0.262 0.007 264);
+  --muted-foreground: oklch(0.712 0.014 264);
+  --accent: oklch(0.298 0.008 264);
+  --accent-foreground: oklch(0.962 0.003 264);
+  --destructive: oklch(0.68 0.17 27);
+  --border: oklch(1 0 0 / 11%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.7 0.165 27);
+
+  --brand: oklch(0.705 0.165 27);
+  --brand-foreground: oklch(0.17 0.03 27);
+  --brand-soft: oklch(0.705 0.165 27 / 0.12);
+  --brand-line: oklch(0.705 0.165 27 / 0.26);
+
+  --surface-raised: oklch(0.226 0.006 264);
+  --surface-sunken: oklch(0.142 0.005 264);
+  --code-bg: oklch(0.132 0.005 264);
+}
+
+@theme inline {
+  --font-sans: 'Geist Variable', 'PingFang SC', 'HarmonyOS Sans SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Noto Sans CJK SC', system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) * 1.8);
+
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-line: var(--brand-line);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-code-bg: var(--code-bg);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    /* 平滑滚动交给 Lenis，浏览器原生 smooth 会造成双重插值 */
+    scroll-behavior: auto;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  ::selection {
+    background: var(--brand-soft);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* 中文标题不要被字重压扁，给一点字距 */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.015em;
+  }
+}
+
+/* ---------- 滑块品牌化：把 shadcn Slider 的主色换成品牌朱红 ---------- */
+@utility slider-brand {
+  [data-slot='slider-range'] {
+    background-color: var(--brand);
+  }
+
+  [data-slot='slider-thumb'] {
+    border-color: var(--brand);
+  }
+}
+
+/* ---------- Shiki 双主题：跟随 .dark 切换，避免重新高亮 ---------- */
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+  background-color: transparent;
+}
+
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark);
+  background-color: transparent;
+}
+
+.shiki code {
+  display: grid;
+  counter-reset: line;
+}
+
+/* ---------- 代码块滚动条 ---------- */
+.code-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-line) transparent;
+}
+
+.code-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.code-scroll::-webkit-scrollbar-thumb {
+  background: var(--brand-line);
+  border-radius: 999px;
+}
+
+.code-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- 入场动画：默认收起，进入视口后展开 ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--reveal-index, 0) * 60ms);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
