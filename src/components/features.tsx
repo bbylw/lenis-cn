@@ -75,9 +75,9 @@ export function Features() {
           step={0.06}
           className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[minmax(9.5rem,auto)]"
         >
-          {/* 为同步而生：整张图铺满，2x2 */}
+          {/* 为同步而生：官方机械点阵卡匣与矢量 SVG 准星标尺覆层 */}
           <RevealItem className="md:col-span-2 lg:col-span-2 lg:row-span-2">
-            <FeatureShell padded={false} className="h-full min-h-64 lg:min-h-0">
+            <FeatureShell padded={false} className="group relative h-full min-h-72 overflow-hidden lg:min-h-0">
               <picture>
                 <source
                   type="image/webp"
@@ -86,16 +86,46 @@ export function Features() {
                 />
                 <img
                   src="/images/optimized/sync-motion-1440.jpg"
-                  alt="长曝光下连续流动的光带，象征被平滑同步的滚动运动"
+                  alt="官方机械流体点阵卡匣与精密工程蓝图"
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 size-full object-cover"
+                  className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
               </picture>
-              <div className="absolute inset-0 bg-linear-to-t from-background via-background/55 to-transparent" />
+
+              {/* 矢量 SVG 工业标尺与四角准星覆层 */}
+              <svg
+                viewBox="0 0 400 300"
+                className="pointer-events-none absolute inset-0 size-full"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* 四角技术折角 [ ┌ ┐ └ ┘ ] */}
+                <path d="M 12,24 L 12,12 L 24,12" className="stroke-brand" strokeWidth="1.5" />
+                <path d="M 388,12 L 388,24 M 388,12 L 376,12" className="stroke-brand" strokeWidth="1.5" />
+                <path d="M 12,276 L 12,288 L 24,288" className="stroke-brand" strokeWidth="1.5" />
+                <path d="M 388,288 L 388,276 M 388,288 L 376,288" className="stroke-brand" strokeWidth="1.5" />
+
+                {/* 动态准星瞄准十字 */}
+                <g transform="translate(370, 30)">
+                  <line x1="-8" y1="0" x2="8" y2="0" className="stroke-brand" strokeWidth="1" />
+                  <line x1="0" y1="-8" x2="0" y2="8" className="stroke-brand" strokeWidth="1" />
+                  <circle cx="0" cy="0" r="4" className="stroke-brand/60" strokeWidth="0.8" />
+                </g>
+              </svg>
+
+              {/* 渐变遮罩保护文字可读性 */}
+              <div className="absolute inset-0 bg-linear-to-t from-background via-background/65 to-transparent" />
+
+              {/* 前景内容 */}
               <div className="relative flex h-full flex-col justify-end p-5">
-                <Pulse size={20} className="mb-3 text-brand" />
-                <h3 className="text-lg font-semibold">{byId('sync').title}</h3>
+                <div className="mb-2 flex items-center gap-2">
+                  <Pulse size={18} className="text-brand" />
+                  <span className="font-mono text-[10px] tracking-wider uppercase text-brand">
+                    Darkroom Heritage // Sync
+                  </span>
+                </div>
+                <h3 className="text-lg font-semibold tracking-tight">{byId('sync').title}</h3>
                 <p className="mt-1.5 max-w-[38ch] text-[13px] leading-relaxed text-muted-foreground">
                   {byId('sync').body}
                 </p>
